@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Letter Log Maker</title>
+  <link rel="stylesheet" href="style.css?v=32">
+  <link rel="stylesheet" href="layout-fix.css?v=61">
+</head>
+<body>
+<div class="studio-shell">
+  <header class="topbar">
+    <div><p class="eyebrow">LETTER LOG MAKER</p><h1>로그 제조기</h1></div>
+    <div class="top-actions">
+      <span id="saveState">저장됨</span>
+      <button id="restoreBtn" class="restore-button" type="button">백업 불러오기</button>
+      <input id="restoreFile" type="file" accept="application/json,.json" hidden>
+      <button id="backupBtn" type="button">백업 저장</button>
+      <button id="htmlBtn" type="button">HTML 보기</button>
+      <button id="copyBtn" type="button">복사하기</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="editor-panel">
+      <nav class="editor-tabs" aria-label="설정 탭">
+        <button class="tab-button active" data-tab="layout">표제</button>
+        <button class="tab-button" data-tab="design">디자인</button>
+        <button class="tab-button" data-tab="body-layout">레이아웃</button>
+        <button class="tab-button" data-tab="image">배경</button>
+        <button class="tab-button" data-tab="info">정보</button>
+        <button class="tab-button" data-tab="replace">치환</button>
+      </nav>
+
+      <section class="tab-panel active" data-panel="layout">
+        <h2 class="panel-title">표제 구성</h2>
+        <label>상단 표제<input data-field="kicker" type="text"></label>
+        <label>호수 번호<input data-field="issue" type="text"></label>
+        <label>인용문<textarea data-field="quote" rows="3"></textarea></label>
+        <label>대제목<textarea data-field="title" rows="2"></textarea></label>
+        <label>대제목 폰트
+          <select data-field="titleFont" class="font-select title-font-select">
+            <option value="playfair">Georgia Italic</option>
+            <option value="italiana">Georgia</option>
+            <option value="dmserif">Times New Roman Italic</option>
+            <option value="hahmlet">AppleMyungjo · Batang</option>
+            <option value="pretendard">Pretendard</option>
+            <option value="notosans">Noto Sans KR</option>
+            <option value="notoserifkr">Noto Serif KR</option>
+            <option value="systemsans">System UI</option>
+            <option value="yugothic">Yu Gothic · Meiryo</option>
+            <option value="monodisplay">Consolas · Monaco</option>
+          </select>
+        </label>
+        <label>보낸 이 / 서명<textarea data-field="author" rows="2"></textarea></label>
+        <label>대제목·화자 정렬
+          <select data-field="titleAlign"><option value="left">왼쪽</option><option value="center">가운데</option><option value="right">오른쪽</option></select>
+        </label>
+        <label>하단 구분선 문구<input data-field="footer" type="text"></label>
+      </section>
+
+      <section class="tab-panel design-panel" data-panel="design">
+        <h2 class="panel-title">색상</h2>
+        <div class="color-rows">
+          <label>배경<input id="paperColor" data-field="paperColor" type="color"><input data-color-text="paperColor" type="text" maxlength="7"></label>
+          <label>본문<input id="textColor" data-field="textColor" type="color"><input data-color-text="textColor" type="text" maxlength="7"></label>
+          <label>상단 표제<input id="kickerColor" data-field="kickerColor" type="color"><input data-color-text="kickerColor" type="text" maxlength="7"></label>
+          <label>호수 번호<input id="issueColor" data-field="issueColor" type="color"><input data-color-text="issueColor" type="text" maxlength="7"></label>
+          <label>인용문<input id="quoteColor" data-field="quoteColor" type="color"><input data-color-text="quoteColor" type="text" maxlength="7"></label>
+          <label>타이틀<input id="titleColor" data-field="titleColor" type="color"><input data-color-text="titleColor" type="text" maxlength="7"></label>
+          <label>화자<input id="authorColor" data-field="authorColor" type="color"><input data-color-text="authorColor" type="text" maxlength="7"></label>
+          <label>하단 구분선 문구<input id="footerColor" data-field="footerColor" type="color"><input data-color-text="footerColor" type="text" maxlength="7"></label>
+          <label>대사<input id="dialogueColor" data-field="dialogueColor" type="color"><input data-color-text="dialogueColor" type="text" maxlength="7"><span class="inline-check"><input data-field="dialogueBold" type="checkbox">굵게</span></label>
+          <label>생각<input id="thoughtColor" data-field="thoughtColor" type="color"><input data-color-text="thoughtColor" type="text" maxlength="7"><span class="inline-check"><input data-field="thoughtItalic" type="checkbox">기울임</span></label>
+          <label>강조<input id="emphasisColor" data-field="emphasisColor" type="color"><input data-color-text="emphasisColor" type="text" maxlength="7"></label>
+          <label>정보<input id="metaColor" data-field="metaColor" type="color"><input data-color-text="metaColor" type="text" maxlength="7"></label>
+        </div>
+        <h3 class="section-title">본문 서체</h3>
+        <label>본문 폰트<select data-field="bodyFont" class="font-select"><option value="pretendard">Pretendard</option><option value="notosans">Noto Sans KR</option><option value="systemsans">System UI</option><option value="systemgothic">Apple SD Gothic Neo · Malgun Gothic</option><option value="notoserif">Noto Serif KR</option><option value="nanummyeongjo">Nanum Myeongjo</option><option value="systemserif">AppleMyungjo · Batang</option><option value="japanesans">Yu Gothic · Meiryo</option><option value="japaneseserif">Yu Mincho · MS Mincho</option><option value="mono">Consolas · Monaco</option></select></label>
+      </section>
+
+      <section class="tab-panel body-layout-panel" data-panel="body-layout">
+        <div class="panel-title-row body-layout-heading">
+          <h2 class="panel-title">본문 레이아웃</h2>
+          <div class="rail-section-actions"><button id="railPositionToggle" type="button" aria-pressed="false">위치 조정</button><button id="addRailSection" type="button">＋ 여백 구간</button></div>
+        </div>
+        <div id="railSectionsEditor" class="rail-sections-editor"></div>
+      </section>
+
+      <section class="tab-panel" data-panel="image">
+        <h2 class="panel-title">상단 이미지</h2>
+        <label>상단 이미지 주소<input data-field="heroImageUrl" type="url" placeholder="https://"></label>
+        <div class="hero-image-actions">
+          <label class="file-line">이미지 불러오기<input id="heroImageFile" type="file" accept="image/*"></label>
+          <button id="heroImageClear" type="button">이미지 제거</button>
+        </div>
+        <div class="compact-range-list">
+          <label><span>높이</span><input data-field="heroHeight" id="heroHeight" type="range" min="140" max="720"><input class="range-number" data-range-value="heroHeight" type="number" min="140" max="720"><em>px</em></label>
+          <label><span>확대</span><input data-field="heroZoom" id="heroZoom" type="range" min="100" max="300"><input class="range-number" data-range-value="heroZoom" type="number" min="100" max="300"><em>%</em></label>
+          <label><span>가로 초점</span><input data-field="heroFocusX" id="heroFocusX" type="range" min="0" max="100"><input class="range-number" data-range-value="heroFocusX" type="number" min="0" max="100"><em>%</em></label>
+          <label><span>세로 초점</span><input data-field="heroFocusY" id="heroFocusY" type="range" min="0" max="100"><input class="range-number" data-range-value="heroFocusY" type="number" min="0" max="100"><em>%</em></label>
+          <label><span>이미지 농도</span><input data-field="heroOpacity" id="heroOpacity" type="range" min="0" max="100"><input class="range-number" data-range-value="heroOpacity" type="number" min="0" max="100"><em>%</em></label>
+        </div>
+        <div class="gradient-heading"><h3 class="section-title">하단 그라데이션</h3><select data-field="gradientMode" aria-label="하단 그라데이션"><option value="none">없음</option><option value="fade">사용</option></select></div>
+        <div class="compact-range-list gradient-ranges">
+          <label><span>시작</span><input data-field="fadeStart" id="fadeStart" type="range" min="0" max="100"><input class="range-number" data-range-value="fadeStart" type="number" min="0" max="100"><em>%</em></label>
+          <label><span>끝</span><input data-field="fadeEnd" id="fadeEnd" type="range" min="0" max="100"><input class="range-number" data-range-value="fadeEnd" type="number" min="0" max="100"><em>%</em></label>
+          <label><span>강도</span><input data-field="fadeStrength" id="fadeStrength" type="range" min="0" max="100"><input class="range-number" data-range-value="fadeStrength" type="number" min="0" max="100"><em>%</em></label>
+        </div>
+        <div class="gradient-heading overlay-heading"><h3 class="section-title">표제 배경 효과</h3><select data-field="overlayMode" aria-label="표제 배경 효과"><option value="none">없음</option><option value="normal">단색</option><option value="top">위 → 아래</option><option value="bottom">아래 → 위</option><option value="left">왼쪽 → 오른쪽</option><option value="right">오른쪽 → 왼쪽</option><option value="vignette">가장자리</option></select></div>
+        <div class="compact-range-list overlay-ranges">
+          <label class="overlay-color-row"><span>색상</span><input id="overlayColor" data-field="overlayColor" type="color"><input data-color-text="overlayColor" type="text" maxlength="7"><em></em></label>
+          <label><span>강도</span><input data-field="overlayOpacity" id="overlayOpacity" type="range" min="0" max="100"><input class="range-number" data-range-value="overlayOpacity" type="number" min="0" max="100"><em>%</em></label>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="info">
+        <div class="section-toggle"><h2 class="panel-title">로그 정보</h2><input data-field="showLogMeta" type="checkbox" aria-label="로그 정보 표시"></div>
+        <label>날짜<input data-field="logDate" type="text"></label><label>모델<input data-field="logModel" type="text"></label>
+        <label>프롬프트<textarea data-field="logPrompt" rows="3"></textarea></label><label>봇<input data-field="logBot" type="text"></label>
+        <label>페르소나<input data-field="logPersona" type="text"></label>
+        <div class="section-toggle section-toggle-spaced"><h2 class="panel-title">코멘트</h2><input data-field="showComment" type="checkbox" aria-label="코멘트 표시"></div>
+        <label>내용<textarea data-field="logComment" rows="4"></textarea></label>
+      </section>
+
+      <section class="tab-panel" data-panel="replace">
+        <div class="panel-title-row"><h2 class="panel-title">단어 치환</h2><button id="replaceBtn" type="button">모두 치환</button></div>
+        <div id="replaceRows" class="replace-rows">
+          <div class="replace-row"><input id="replaceFrom" class="replace-from" type="text" aria-label="찾을 단어 1" placeholder="찾을 단어"><span>→</span><input id="replaceTo" class="replace-to" type="text" aria-label="바꿀 단어 1" placeholder="바꿀 단어"></div>
+          <div class="replace-row"><input class="replace-from" type="text" aria-label="찾을 단어 2" placeholder="찾을 단어"><span>→</span><input class="replace-to" type="text" aria-label="바꿀 단어 2" placeholder="바꿀 단어"></div>
+          <div class="replace-row"><input class="replace-from" type="text" aria-label="찾을 단어 3" placeholder="찾을 단어"><span>→</span><input class="replace-to" type="text" aria-label="바꿀 단어 3" placeholder="바꿀 단어"></div>
+        </div>
+        <button id="addReplaceRow" class="replace-add" type="button" aria-label="치환 행 추가">＋</button>
+        <span id="replaceState" class="replace-state"></span>
+      </section>
+
+      <section class="legacy-editor" hidden>
+        <div id="bodyEditor" contenteditable="true"></div>
+        <button data-command="bold"></button><button data-command="italic"></button><button data-block="h2"></button><button data-thought></button>
+        <button id="insertDividerBtn"></button><button id="openImageInsertBtn"></button>
+        <div id="imageInsertPanel" hidden><input id="inlineImageUrl"><input id="inlineImageCaption"><select id="inlineImageLayout"><option value="left"></option></select><input id="inlineImageWidth" value="32"><button id="insertImageBtn"></button></div>
+      </section>
+    </aside>
+
+    <section class="preview-area">
+      <div class="preview-toolbar">
+        <div class="preview-format-tools" data-edit-disabled="true">
+          <div class="tool-group"><button id="previewEditToggle" class="tool-button" type="button" aria-pressed="false">편집 활성화</button></div>
+          <div class="tool-group"><button class="tool-button edit-only" data-preview-command="bold" type="button"><b>B</b></button><button class="tool-button edit-only" data-preview-command="italic" type="button"><i>I</i></button><button class="tool-button edit-only" data-preview-block="p" type="button">본문</button><button class="tool-button edit-only" data-preview-block="h2" type="button">제목</button></div>
+          <div class="tool-group body-direct-tools"><label>글자 <input id="toolbarBodySize" type="number" min="10" max="28" step="1"></label><label>들여쓰기 <input id="toolbarIndentSize" type="number" min="0" max="80" step="1" title="0이면 들여쓰기 없음"></label></div>
+          <div class="tool-group"><button id="previewWritingBtn" class="tool-button" type="button" aria-expanded="false">본문 설정</button><button id="markdownHelpBtn" class="tool-button" type="button" aria-expanded="false">마크다운</button><button id="previewDividerBtn" class="tool-button edit-only" type="button">구분선</button><button id="previewAnnotationBtn" class="tool-button edit-only" type="button" aria-expanded="false" aria-controls="previewAnnotationInsert" disabled title="본문에서 주석을 달 부분을 선택하세요">주석</button><button id="previewImageBtn" class="tool-button edit-only" type="button" aria-expanded="false">이미지</button></div>
+          <div class="tool-group"><button class="tool-button edit-only" data-preview-command="undo" type="button">↶</button><button class="tool-button edit-only" data-preview-command="redo" type="button">↷</button></div>
+        </div>
+
+        <div id="previewWritingPanel" class="toolbar-popover writing-popover" hidden>
+          <label>본문 폰트<select data-field="bodyFont"><option value="pretendard">Pretendard</option><option value="notosans">Noto Sans KR</option><option value="systemsans">System UI</option><option value="systemgothic">Apple SD Gothic Neo · Malgun Gothic</option><option value="notoserif">Noto Serif KR</option><option value="nanummyeongjo">Nanum Myeongjo</option><option value="systemserif">AppleMyungjo · Batang</option><option value="japanesans">Yu Gothic · Meiryo</option><option value="japaneseserif">Yu Mincho · MS Mincho</option><option value="mono">Consolas · Monaco</option></select></label>
+          <label>글자 크기<input data-field="bodySize" id="bodySize" type="number" min="10" max="28"></label>
+          <label>행간<input data-field="lineHeight" type="number" min="1" max="3" step=".05"></label>
+          <label>자간<input data-field="letterSpacing" type="number" min="-2" max="8" step=".1"></label>
+          <label>문단 간격<input data-field="paragraphGap" type="number" min="0" max="60"></label>
+          <label>들여쓰기 폭<input data-field="textIndent" id="textIndent" type="number" min="0" max="80"></label>
+        </div>
+
+        <div id="markdownHelpPanel" class="toolbar-popover markdown-help-popover" hidden>
+          <b>지원 마크다운</b>
+          <dl><dt>**굵게**</dt><dd>굵은 글씨</dd><dt>*기울임*</dt><dd>기울임</dd><dt>~~취소선~~</dt><dd>취소선</dd><dt>`코드`</dt><dd>인라인 코드</dd><dt># 제목</dt><dd>1~6단계 제목</dd><dt>&gt; 문장</dt><dd>인용·생각</dd><dt>- 항목</dt><dd>목록</dd><dt>1. 항목</dt><dd>번호 목록</dd><dt>---</dt><dd>구분선</dd><dt>[이름](https://주소)</dt><dd>링크</dd></dl>
+        </div>
+
+        <div id="previewImageInsert" class="toolbar-popover image-insert-popover" hidden>
+          <input id="previewImageUrl" type="text" placeholder="이미지 주소 · HTTPS / 아카라이브 이미지 주소">
+          <label class="file-text">파일 선택<input id="previewImageFile" type="file" accept="image/*"></label>
+          <select id="previewImageLayout"><option value="left">본문 왼쪽</option><option value="right">본문 오른쪽</option><option value="center">본문 가운데</option><option value="full">가로 전체</option></select>
+          <button id="previewImageAdd" type="button">이미지 추가</button><span id="previewImageState"></span>
+        </div>
+
+        <div id="previewAnnotationInsert" class="toolbar-popover annotation-insert-popover" hidden>
+          <output id="previewAnnotationSelection" class="annotation-selection-preview" aria-label="선택한 본문"></output>
+          <textarea id="previewAnnotationText" rows="2" placeholder="선택한 부분에 붙일 주석을 입력하세요" aria-label="새 주석 내용"></textarea>
+          <span class="annotation-insert-actions"><button id="previewAnnotationAdd" type="button">추가</button><button id="previewAnnotationCancel" type="button">취소</button></span>
+          <span id="previewAnnotationState" role="status" aria-live="polite"></span>
+        </div>
+
+        <div id="previewImageTools" class="preview-image-tools" hidden>
+          <div class="image-tool-row image-placement-row">
+            <span class="image-tool-label">이동</span>
+            <button id="selectedImageMoveUp" type="button">↑ 한 줄</button><button id="selectedImageMoveDown" type="button">↓ 한 줄</button><output id="selectedImageLineValue">0줄</output>
+            <button type="button" data-selected-layout="left">왼쪽</button><button type="button" data-selected-layout="center">가운데</button><button type="button" data-selected-layout="right">오른쪽</button><button type="button" data-selected-layout="full">전체</button>
+            <select id="selectedImageLayout" hidden><option value="left">왼쪽</option><option value="right">오른쪽</option><option value="center">가운데</option><option value="full">전체</option></select>
+            <button id="selectedImageDelete" class="image-delete" type="button">삭제</button>
+          </div>
+          <div class="image-tool-row image-adjust-row">
+            <label>폭<input id="selectedImageWidth" type="range" min="20" max="100"><input id="selectedImageWidthNumber" type="number" min="20" max="100"></label>
+            <label>확대<input id="selectedImageZoom" type="range" min="100" max="300"><input id="selectedImageZoomNumber" type="number" min="100" max="300"></label>
+            <label>가로 초점<input id="selectedImageFocusX" type="range" min="0" max="100"><input id="selectedImageFocusXNumber" type="number" min="0" max="100"></label>
+            <label>세로 초점<input id="selectedImageFocusY" type="range" min="0" max="100"><input id="selectedImageFocusYNumber" type="number" min="0" max="100"></label>
+          </div>
+          <div class="image-tool-row image-url-row"><span class="image-tool-label">HTML 주소</span><input id="selectedImageExportUrl" type="text" placeholder="게시할 때 사용할 HTTPS 이미지 주소"></div>
+          <div class="image-tool-row image-caption-row" data-caption-side="top">
+            <span class="image-tool-label">위 캡션</span>
+            <input id="selectedImageCaptionTop" class="caption-tool-input" type="text" placeholder="이미지 위 문구">
+            <select id="selectedImageCaptionTopFont" aria-label="위 캡션 글꼴"><option value="body">본문 글꼴</option><option value="pretendard">Pretendard</option><option value="notosans">Noto Sans KR</option><option value="systemsans">System UI</option><option value="systemgothic">Apple SD Gothic Neo · Malgun Gothic</option><option value="notoserif">Noto Serif KR</option><option value="nanummyeongjo">Nanum Myeongjo</option><option value="systemserif">AppleMyungjo · Batang</option><option value="japanesans">Yu Gothic · Meiryo</option><option value="japaneseserif">Yu Mincho · MS Mincho</option><option value="mono">Consolas · Monaco</option></select>
+            <label class="caption-size-field">크기<input id="selectedImageCaptionTopSize" type="number" min="7" max="24" step="1"><span>px</span></label>
+            <button id="selectedImageCaptionTopBold" type="button" aria-pressed="false"><b>B</b></button><button id="selectedImageCaptionTopItalic" type="button" aria-pressed="false"><i>I</i></button>
+          </div>
+          <div class="image-tool-row image-caption-row" data-caption-side="bottom">
+            <span class="image-tool-label">아래 캡션</span>
+            <input id="selectedImageCaptionBottom" class="caption-tool-input" type="text" placeholder="이미지 아래 문구">
+            <select id="selectedImageCaptionBottomFont" aria-label="아래 캡션 글꼴"><option value="body">본문 글꼴</option><option value="pretendard">Pretendard</option><option value="notosans">Noto Sans KR</option><option value="systemsans">System UI</option><option value="systemgothic">Apple SD Gothic Neo · Malgun Gothic</option><option value="notoserif">Noto Serif KR</option><option value="nanummyeongjo">Nanum Myeongjo</option><option value="systemserif">AppleMyungjo · Batang</option><option value="japanesans">Yu Gothic · Meiryo</option><option value="japaneseserif">Yu Mincho · MS Mincho</option><option value="mono">Consolas · Monaco</option></select>
+            <label class="caption-size-field">크기<input id="selectedImageCaptionBottomSize" type="number" min="7" max="24" step="1"><span>px</span></label>
+            <button id="selectedImageCaptionBottomBold" type="button" aria-pressed="false"><b>B</b></button><button id="selectedImageCaptionBottomItalic" type="button" aria-pressed="false"><i>I</i></button>
+          </div>
+        </div>
+
+        <div id="previewAnnotationTools" class="preview-annotation-tools" hidden>
+          <div class="annotation-tool-row annotation-content-row">
+            <strong id="selectedAnnotationNumber" class="annotation-tool-number">01</strong>
+            <textarea id="selectedAnnotationText" class="annotation-tool-text" rows="1" placeholder="주석 내용" aria-label="선택한 주석 내용"></textarea>
+            <button id="selectedAnnotationMoveUp" type="button" title="한 줄 위로">↑ 한 줄</button>
+            <button id="selectedAnnotationMoveDown" type="button" title="한 줄 아래로">↓ 한 줄</button>
+            <output id="selectedAnnotationOffset" class="annotation-offset-value">초기</output>
+            <button id="selectedAnnotationReset" type="button">초기 위치</button>
+            <button id="selectedAnnotationDelete" class="annotation-delete" type="button">삭제</button>
+          </div>
+          <div class="annotation-tool-row annotation-format-row">
+            <label><span>글꼴</span><select id="selectedAnnotationFont" aria-label="주석 글꼴"><option value="body">본문 글꼴</option><option value="pretendard">Pretendard</option><option value="notosans">Noto Sans KR</option><option value="systemsans">System UI</option><option value="systemgothic">Apple SD Gothic Neo · Malgun Gothic</option><option value="notoserif">Noto Serif KR</option><option value="nanummyeongjo">Nanum Myeongjo</option><option value="systemserif">AppleMyungjo · Batang</option><option value="japanesans">Yu Gothic · Meiryo</option><option value="japaneseserif">Yu Mincho · MS Mincho</option><option value="mono">Consolas · Monaco</option></select></label>
+            <label class="annotation-size-field"><span>크기</span><input id="selectedAnnotationSize" type="number" min="7" max="24" step="1"><em>px</em></label>
+            <label class="annotation-color-field"><span>색</span><input id="selectedAnnotationColor" type="color" aria-label="주석 색"><input id="selectedAnnotationColorText" type="text" maxlength="7" spellcheck="false" aria-label="주석 색상 코드"></label>
+            <button id="selectedAnnotationBold" type="button" aria-pressed="false" title="굵게"><b>B</b></button>
+            <button id="selectedAnnotationItalic" type="button" aria-pressed="false" title="기울임"><i>I</i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-label"><span>COPY HTML PROOF</span><span>저장 후 최종 확인</span></div>
+      <div id="imageDropGuide" class="image-drop-guide" hidden><span data-zone="left">왼쪽</span><span data-zone="center">가운데</span><span data-zone="right">오른쪽</span></div>
+      <div id="publicationProof" class="publication-proof"></div>
+      <article id="paper" class="paper" hidden>
+        <div id="heroArtwork" class="hero-artwork"><div id="heroArtworkImage" class="hero-artwork-image"></div><div id="heroArtworkTint" class="hero-artwork-tint"></div><div id="heroArtworkFade" class="hero-artwork-fade"></div></div>
+        <header class="paper-meta"><div><span id="pvKicker"></span><span id="pvIssue"></span></div><blockquote id="pvQuote"></blockquote></header>
+        <h1 id="pvTitle" class="display-title"></h1><div id="pvAuthor" class="title-author"></div>
+        <div id="paperBody" class="paper-body full"><aside id="sideRail" hidden></aside><div id="pvBody" class="prose"></div></div>
+        <footer id="pvFooter" class="paper-footer"></footer>
+        <section id="pvInfo" class="log-info" hidden><div id="pvMetaBlock" class="log-meta-block"><span data-info-item="logDate"><b>DATE</b><i id="pvLogDate"></i></span><span data-info-item="logModel"><b>MODEL</b><i id="pvLogModel"></i></span><span data-info-item="logPrompt"><b>PROMPT</b><i id="pvLogPrompt"></i></span><span data-info-item="logBot"><b>BOT</b><i id="pvLogBot"></i></span><span data-info-item="logPersona"><b>PERSONA</b><i id="pvLogPersona"></i></span></div><div id="pvCommentBlock" class="log-comment"><b>COMMENT</b><p id="pvLogComment"></p></div></section>
+        <div class="folio">DESIGN BY GIM</div>
+      </article>
+    </section>
+  </main>
+</div>
+
+<div id="modal" class="modal" hidden><div class="modal-card"><button id="closeBtn" type="button">닫기</button><h2>아카라이브용 HTML</h2><textarea id="htmlOutput" rows="20"></textarea><button id="modalCopyBtn" class="ink-button" type="button">복사하기</button></div></div>
+  <script src="app-v3.js?v=76"></script>
+</body>
+</html>
