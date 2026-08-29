@@ -592,3 +592,20 @@ input[type="range"]:focus-visible{box-shadow:none!important}
 .image-caption-row .caption-size-field{display:grid!important;grid-template-columns:auto 34px auto!important;align-items:center!important;gap:4px!important;height:26px!important;margin:0!important;color:#716b63!important;font-size:8px!important;white-space:nowrap!important}
 .image-caption-row .caption-size-field input{box-sizing:border-box!important;width:34px!important;height:23px!important;min-height:23px!important;margin:0!important;padding:1px!important;border:0!important;border-bottom:1px solid #aaa49a!important;background:transparent!important;text-align:center!important;font-size:8px!important}
 .image-caption-row button{padding:0!important;font-size:10px!important}
+
+/* 모바일 보기 */
+.preview-format-tools .tool-group.mobile-view-group{margin-left:auto!important;margin-right:0!important;padding-left:0!important;align-items:center!important;gap:9px!important;border:0!important}
+.mobile-width-options{display:flex!important;align-items:center!important;gap:2px!important}
+.mobile-width-options[hidden]{display:none!important}
+.mobile-width-options button{padding:0!important;border:0!important;background:none!important;color:#9a948b!important;font-size:11px!important;line-height:1.4!important;cursor:pointer!important}
+.mobile-width-options button.is-active{background:none!important;border:0!important;color:#1d1b19!important;font-weight:700!important}
+.preview-format-tools #mobileViewToggle.is-active,.preview-format-tools #mobileViewToggle.is-active:hover{background:none!important;color:#1d1b19!important;font-weight:700!important}
+body.mobile-view-on .publication-proof{box-shadow:0 0 0 1px #b3ada3,0 10px 30px rgba(35,32,27,.16)!important}
+body.mobile-view-on .preview-area{background:#cfc9bf!important}
+.rail-annotation-mode-line{margin:0 0 5px!important;color:#8b857c!important;font-size:9px!important;letter-spacing:.06em!important}
+.rail-annotation-mode-line.is-mobile{color:#8a5a3c!important;font-weight:700!important}
+.rail-annotation-badge{flex:0 0 auto!important;padding:0 3px!important;border:1px solid rgba(138,90,60,.5)!important;color:#8a5a3c!important;font:700 8px/1.5 Arial,sans-serif!important}
+body.mobile-view-on .publication-annotation-note:hover .annotation-drag-handle,body.mobile-view-on .publication-annotation-note.is-selected .annotation-drag-handle{display:inline-flex!important}
+body.mobile-view-on .publication-annotation-note{box-shadow:inset 0 0 0 1px rgba(138,90,60,.35)!important}
+.rail-shared-note{display:none!important}
+body.mobile-view-on .rail-shared-note{display:block!important;margin:8px 0 0!important;padding:5px 7px!important;background:rgba(138,90,60,.09)!important;color:#8a5a3c!important;font-size:9px!important;line-height:1.6!important}

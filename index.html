@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Letter Log Maker</title>
   <link rel="stylesheet" href="style.css?v=34">
-  <link rel="stylesheet" href="layout-fix.css?v=67">
+  <link rel="stylesheet" href="layout-fix.css?v=78">
 </head>
 <body>
 <div class="studio-shell">
@@ -150,6 +150,14 @@
           <div class="tool-group body-direct-tools"><label>글자 <input id="toolbarBodySize" type="number" min="10" max="28" step="1"></label><label>들여쓰기 <input id="toolbarIndentSize" type="number" min="0" max="80" step="1" title="0이면 들여쓰기 없음"></label></div>
           <div class="tool-group"><button id="previewWritingBtn" class="tool-button" type="button" aria-expanded="false">본문 설정</button><button id="markdownHelpBtn" class="tool-button" type="button" aria-expanded="false">마크다운</button><button id="previewDividerBtn" class="tool-button edit-only" type="button">구분선</button><button id="previewAnnotationBtn" class="tool-button edit-only" type="button" aria-expanded="false" aria-controls="previewAnnotationInsert" disabled title="본문에서 주석을 달 부분을 선택하세요">주석</button><button id="previewImageBtn" class="tool-button edit-only" type="button" aria-expanded="false">이미지</button></div>
           <div class="tool-group"><button class="tool-button edit-only" data-preview-command="undo" type="button">↶</button><button class="tool-button edit-only" data-preview-command="redo" type="button">↷</button></div>
+          <div class="tool-group mobile-view-group">
+            <span class="mobile-width-options" hidden>
+              <button type="button" data-mobile-width="360">360</button>
+              <button type="button" data-mobile-width="375" class="is-active">375</button>
+              <button type="button" data-mobile-width="430">430</button>
+            </span>
+            <button id="mobileViewToggle" class="tool-button" type="button" aria-pressed="false">모바일 보기</button>
+          </div>
         </div>
 
         <div id="previewWritingPanel" class="toolbar-popover writing-popover" hidden>
@@ -248,6 +256,6 @@
 </div>
 
 <div id="modal" class="modal" hidden><div class="modal-card"><button id="closeBtn" type="button">닫기</button><h2>아카라이브용 HTML</h2><textarea id="htmlOutput" rows="20"></textarea><button id="modalCopyBtn" class="ink-button" type="button">복사하기</button></div></div>
-  <script src="app-v3.js?v=129"></script>
+  <script src="app-v3.js?v=170"></script>
 </body>
 </html>
