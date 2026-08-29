@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Letter Log Maker</title>
-  <link rel="stylesheet" href="style.css?v=32">
-  <link rel="stylesheet" href="layout-fix.css?v=61">
+  <link rel="stylesheet" href="style.css?v=34">
+  <link rel="stylesheet" href="layout-fix.css?v=67">
 </head>
 <body>
 <div class="studio-shell">
@@ -15,9 +15,9 @@
       <span id="saveState">저장됨</span>
       <button id="restoreBtn" class="restore-button" type="button">백업 불러오기</button>
       <input id="restoreFile" type="file" accept="application/json,.json" hidden>
-      <button id="backupBtn" type="button">백업 저장</button>
-      <button id="htmlBtn" type="button">HTML 보기</button>
-      <button id="copyBtn" type="button">복사하기</button>
+       <button id="backupBtn" type="button">백업 저장</button>
+       <button id="htmlBtn" type="button">HTML 보기</button>
+       <button id="copyBtn" type="button">복사하기</button>
     </div>
   </header>
 
@@ -96,7 +96,7 @@
         </div>
         <div class="compact-range-list">
           <label><span>높이</span><input data-field="heroHeight" id="heroHeight" type="range" min="140" max="720"><input class="range-number" data-range-value="heroHeight" type="number" min="140" max="720"><em>px</em></label>
-          <label><span>확대</span><input data-field="heroZoom" id="heroZoom" type="range" min="100" max="300"><input class="range-number" data-range-value="heroZoom" type="number" min="100" max="300"><em>%</em></label>
+          <label title="게시 HTML·미리보기 어디에도 반영되지 않습니다."><span>확대</span><input data-field="heroZoom" id="heroZoom" type="range" min="100" max="300"><input class="range-number" data-range-value="heroZoom" type="number" min="100" max="300"><em>%</em></label>
           <label><span>가로 초점</span><input data-field="heroFocusX" id="heroFocusX" type="range" min="0" max="100"><input class="range-number" data-range-value="heroFocusX" type="number" min="0" max="100"><em>%</em></label>
           <label><span>세로 초점</span><input data-field="heroFocusY" id="heroFocusY" type="range" min="0" max="100"><input class="range-number" data-range-value="heroFocusY" type="number" min="0" max="100"><em>%</em></label>
           <label><span>이미지 농도</span><input data-field="heroOpacity" id="heroOpacity" type="range" min="0" max="100"><input class="range-number" data-range-value="heroOpacity" type="number" min="0" max="100"><em>%</em></label>
@@ -190,9 +190,9 @@
           </div>
           <div class="image-tool-row image-adjust-row">
             <label>폭<input id="selectedImageWidth" type="range" min="20" max="100"><input id="selectedImageWidthNumber" type="number" min="20" max="100"></label>
-            <label>확대<input id="selectedImageZoom" type="range" min="100" max="300"><input id="selectedImageZoomNumber" type="number" min="100" max="300"></label>
-            <label>가로 초점<input id="selectedImageFocusX" type="range" min="0" max="100"><input id="selectedImageFocusXNumber" type="number" min="0" max="100"></label>
-            <label>세로 초점<input id="selectedImageFocusY" type="range" min="0" max="100"><input id="selectedImageFocusYNumber" type="number" min="0" max="100"></label>
+            <label title="미리보기 전용입니다. 게시 HTML은 원본 비율을 유지합니다.">확대<input id="selectedImageZoom" type="range" min="100" max="300"><input id="selectedImageZoomNumber" type="number" min="100" max="300"></label>
+            <label title="미리보기 전용입니다. 게시 HTML은 원본 비율을 유지합니다.">가로 초점<input id="selectedImageFocusX" type="range" min="0" max="100"><input id="selectedImageFocusXNumber" type="number" min="0" max="100"></label>
+            <label title="미리보기 전용입니다. 게시 HTML은 원본 비율을 유지합니다.">세로 초점<input id="selectedImageFocusY" type="range" min="0" max="100"><input id="selectedImageFocusYNumber" type="number" min="0" max="100"></label>
           </div>
           <div class="image-tool-row image-url-row"><span class="image-tool-label">HTML 주소</span><input id="selectedImageExportUrl" type="text" placeholder="게시할 때 사용할 HTTPS 이미지 주소"></div>
           <div class="image-tool-row image-caption-row" data-caption-side="top">
@@ -248,6 +248,6 @@
 </div>
 
 <div id="modal" class="modal" hidden><div class="modal-card"><button id="closeBtn" type="button">닫기</button><h2>아카라이브용 HTML</h2><textarea id="htmlOutput" rows="20"></textarea><button id="modalCopyBtn" class="ink-button" type="button">복사하기</button></div></div>
-  <script src="app-v3.js?v=76"></script>
+  <script src="app-v3.js?v=129"></script>
 </body>
 </html>
