@@ -181,7 +181,8 @@ body{overflow:hidden}
   padding:2px 3px!important;background:rgba(244,241,234,.88)!important;color:#5f5a53!important;font:8px/1 Arial,sans-serif!important;letter-spacing:-2px!important
 }
 .publication-proof.rail-position-mode .rail-preview-image-wrap img{pointer-events:none!important}
-.publication-proof.rail-position-mode .rail-preview-item.is-rail-dragging{z-index:5!important;opacity:.58!important}
+.publication-proof.rail-position-mode .rail-preview-item.is-rail-selected{z-index:6!important}
+.publication-proof.rail-position-mode .rail-preview-item.is-rail-dragging{z-index:7!important;opacity:.58!important}
 .publication-proof.rail-position-mode .rail-preview-item.rail-drop-before:after,.publication-proof.rail-position-mode .rail-preview-item.rail-drop-after:after{
   content:""!important;position:absolute!important;z-index:6!important;left:0!important;right:0!important;border-top:1px solid #292724!important
 }
@@ -376,6 +377,7 @@ body{overflow:hidden}
 }
 .publication-proof.edit-mode .publication-annotation-note:hover .annotation-drag-handle,.publication-proof.edit-mode .publication-annotation-note.is-selected .annotation-drag-handle,.annotation-drag-handle:focus-visible{display:inline-flex!important}
 .publication-proof.edit-mode .publication-annotation-note.is-selected{box-shadow:inset 0 0 0 1px rgba(57,54,50,.42)!important}
+.publication-annotation-note.is-selected{z-index:5!important}
 .publication-annotation-note.is-dragging{z-index:6!important;opacity:.62!important;will-change:transform!important}
 .publication-annotation-note.is-dragging .annotation-drag-handle{cursor:grabbing!important}
 .body-annotation-anchor{border-bottom:1px dotted currentColor!important;text-decoration:none!important;cursor:help!important}
