@@ -1,6 +1,19 @@
 /* Stable final layout. This file intentionally owns the shell, tabs, toolbar, and paper layers. */
 :root{--ui-ink:#24221f;--ui-muted:#777168;--ui-line:#b9b3aa;--ui-panel:#ece9e2;--ui-bar:#e8e5de}
 
+.publication-toggle-settings{margin:0 0 24px;padding:0 0 16px;border-bottom:1px solid rgba(36,34,31,.14)}
+.editor-panel .publication-toggle-switch{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0}
+.editor-panel .publication-toggle-switch input{width:16px;height:16px;margin:0;flex:none;accent-color:var(--ui-ink)}
+#publicationToggleOptions{margin-top:16px}
+#publicationToggleOptions[hidden]{display:none!important}
+.publication-read-prompt-settings{margin:16px 0;padding-top:16px;border-top:1px solid rgba(36,34,31,.1)}
+#publicationReadPromptOptions{margin-top:16px}
+#publicationReadPromptOptions[hidden]{display:none!important}
+.publication-toggle-help{margin:8px 0 0;font-size:11px;line-height:1.7;color:var(--ui-muted);word-break:keep-all}
+.publication-toggle-summary{cursor:pointer}
+.publication-toggle-summary::-webkit-details-marker{display:none}
+.publication-toggle-summary:focus-visible{outline:2px solid var(--ui-ink);outline-offset:-3px}
+
 html,body{min-height:100%}
 body{overflow:hidden}
 .studio-shell{min-height:100vh}
@@ -43,7 +56,7 @@ body{overflow:hidden}
 }
 .editor-tabs{
   position:sticky!important;top:0!important;z-index:30!important;
-  display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;
   width:100%!important;height:42px!important;min-height:42px!important;
   margin:0!important;padding:0!important;gap:0!important;
   background:#e5e2db!important;border:0!important;border-bottom:1px solid rgba(36,34,31,.17)!important;
@@ -609,3 +622,88 @@ body.mobile-view-on .publication-annotation-note:hover .annotation-drag-handle,b
 body.mobile-view-on .publication-annotation-note{box-shadow:inset 0 0 0 1px rgba(138,90,60,.35)!important}
 .rail-shared-note{display:none!important}
 body.mobile-view-on .rail-shared-note{display:block!important;margin:8px 0 0!important;padding:5px 7px!important;background:rgba(138,90,60,.09)!important;color:#8a5a3c!important;font-size:9px!important;line-height:1.6!important}
+
+/* Collection navigation and compact settings groups belong to the editor only. */
+.editor-tabs{top:0!important}
+.story-list{display:grid;gap:7px;margin:0 0 12px}
+.story-list-item{display:flex;align-items:center;gap:10px;width:100%;padding:12px 10px;border:1px solid #ccc6bb;background:transparent;text-align:left;color:#5e5952;font-size:12px}
+.story-list-item.is-selected{border-color:#766f62;background:#f9f6ef;color:#24221f}
+.story-number{flex:none;font:10px Arial,sans-serif;color:#91887a}
+.story-list-title{min-width:0;flex:1;overflow-wrap:anywhere;line-height:1.5}
+.story-editing-badge{flex:none;font-size:9px;color:#716752}
+.story-actions{display:flex;gap:6px;flex-wrap:wrap}
+.story-actions button,#addStoryBtn{padding:7px 10px;font-size:10px;white-space:nowrap}
+.story-actions button:disabled{opacity:.35;cursor:default}
+.story-status{min-height:28px;margin-top:10px;font-size:10px;color:#777168;line-height:1.6;overflow-wrap:anywhere}
+.story-status button{padding:3px 6px;margin-left:6px;font-size:10px;text-decoration:underline;border:0}
+.settings-group{border:0;border-bottom:1px solid #c3bcaf;margin:0 0 12px}
+.settings-group>summary{padding:12px 0;color:#4f4b45;font-size:12px;font-weight:600;cursor:pointer}
+.settings-group-body{padding:8px 0 18px}
+.settings-group-body>label{display:block;margin:0 0 18px;font-size:10.5px;color:#5e5952}
+.story-preview-collection{width:min(960px,100%);margin:0 auto;min-width:0}
+.story-preview-entry{margin:0 0 24px;min-width:0}
+.story-preview-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 auto;padding:8px 0;color:#777168;font-size:10px;line-height:1.5}
+.story-preview-heading>span{min-width:0;overflow-wrap:anywhere}
+.story-preview-heading button{flex:none;padding:5px 9px;font-size:10px;background:transparent;border:1px solid #c3bcaf}
+.story-preview-entry.is-active>.story-preview-heading{color:#2c2924}
+.story-preview-host{min-width:0;max-width:100%;margin:0 auto}
+.story-passive-proof .annotation-drag-handle{display:none!important}
+.replace-popover{left:0;box-sizing:border-box;width:min(470px,100%);padding:20px;max-height:70vh;overflow:auto}
+.replace-popover[hidden]{display:none!important}
+.replace-popover .panel-title{margin-bottom:12px!important;font-size:14px!important}
+.replace-scope{margin:0 0 14px;font-size:10px;line-height:1.6;color:#777168}
+.replace-popover input{min-width:0;width:100%;box-sizing:border-box;padding:9px 5px;border:0;border-bottom:1px solid #aaa49a;background:transparent;font-size:12px}
+.replace-popover .replace-add{margin-top:10px!important}
+.story-preview-collection [hidden],.story-status [hidden]{display:none!important}
+@media(max-width:760px){.story-preview-collection{width:100%;max-width:100%}.story-preview-heading{padding:8px 4px}.editor-tabs{top:0!important}}
+
+/* One common cover followed by compact contents rows. */
+.shared-cover-help{margin:-9px 0 20px;font-size:11px;line-height:1.7;color:#777168;word-break:keep-all}
+.story-title-setting{display:block;margin:16px 0!important}
+.story-preview-entry{margin:0;min-width:0}
+.story-preview-collection{max-width:100%}
+#storyPreviewEntries{min-width:0}
+#sharedCoverPreview{width:100%;min-width:0}
+#storyPreviewEntries .story-preview-heading[hidden]{display:none!important}
+body.mobile-view-on #storyPreviewEntries .publication-proof{box-shadow:none!important}
+body.mobile-view-on .story-preview-collection{box-shadow:0 0 0 1px #b3ada3,0 10px 30px rgba(35,32,27,.16)}
+
+/* Independent text and alignment controls for contents and story headings. */
+.contents-text-row{display:grid;grid-template-columns:minmax(0,1fr) 82px;gap:14px;margin:16px 0}
+.contents-text-row>label{display:block;min-width:0;margin:0;font-size:10.5px;color:#5e5952;line-height:1.5}
+
+/* Inline titles stay mounted; common settings apply to the whole collection. */
+.story-list-item{gap:8px;padding:8px}
+.story-list-item .story-list-title{width:0;margin:0;padding:7px 2px;border:0;background:transparent;color:#24221f;font-size:12px;line-height:1.5}
+.story-list-title:focus-visible{outline:1px solid #91887a;outline-offset:2px}
+.story-list-item>button{flex:none;padding:6px 8px;font-size:10px}
+.story-list-item>button[aria-pressed="true"]{border-color:#766f62}
+.story-list-help{margin:0 0 16px;color:#777168;font-size:10px;line-height:1.7;word-break:keep-all}
+.story-selection-label{margin:0 0 7px;color:#777168;font-size:10px}
+.story-editing-label{margin:0 0 7px;color:#777168;font-size:10px;line-height:1.5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#storyPreviewEntries .prose [data-body-segment-prose="true"]{cursor:text}
+
+/* Only layout controls select a story; all presentation controls are common. */
+.layout-story-setting{display:block;margin:0 0 24px;font-size:11px;color:#777168;line-height:1.6}
+.layout-story-setting[hidden],#singleStoryPromptHeight[hidden]{display:none!important}
+.common-settings-help{margin:0 0 22px;color:#777168;font-size:11px;line-height:1.7;word-break:keep-all}
+
+#singleStoryViewSettings[hidden],#contentsSettings[hidden]{display:none!important}
+
+.publication-proof.edit-mode .body-image-viewport{touch-action:none;user-select:none}
+
+/* Empty typing slots after images do not add publication spacing. */
+.publication-proof.edit-mode .prose [data-image-caret="true"]{margin:0!important;min-height:0;line-height:0}
+
+/* Independent width and cropped height, with the existing focus controls below. */
+.image-size-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr)) auto!important;gap:11px!important;padding:4px 0!important}
+.image-size-row label{display:grid!important;grid-template-columns:auto minmax(48px,1fr) 42px!important;align-items:center!important;gap:5px!important;margin:0!important;color:#716b63!important;font-size:8px!important;white-space:nowrap!important}
+.image-size-row input[type=range]{width:100%!important;height:12px!important;min-height:12px!important;margin:0!important}
+.image-size-row input[type=number]{width:42px!important;height:23px!important;min-height:23px!important;margin:0!important;padding:1px!important;border:0!important;border-bottom:1px solid #aaa49a!important;background:transparent!important;text-align:center!important;font-size:8px!important}
+.image-adjust-row{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media(max-width:760px){
+ .image-size-row{grid-template-columns:minmax(0,1fr) auto!important}
+ .image-size-row label{grid-column:1!important}
+ .image-size-row #selectedImageHeightAuto{grid-column:2!important;grid-row:2!important}
+ .image-adjust-row{grid-template-columns:minmax(0,1fr)!important}
+}
